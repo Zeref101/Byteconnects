@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .switch {
+    @apply relative flex items-center w-[60px] h-fit bg-[color:var(--color-dark)] transition-[var(--transition500)] select-none cursor-pointer overflow-hidden p-1 rounded-[30px];
+    --transition: 300ms;
+    --transition500: 500ms;
+    --color-dark: #0c0f14;
+    --color-darkGray: #21262e;
+    --color-gray: #52555a;
+    --color-offwhite: #cecece;
+    --shadow-color: var(--color-dark);
+  }
+
+  /* Svg styles */
+  .switch .svg {
+    @apply transition-[var(--transition)] absolute left-[5px];
+  }
+  .switch .moon {
+    @apply w-[18px] fill-[var(--color-gray)] opacity-100;
+  }
+  .switch .sun {
+    @apply -translate-y-2/4 w-3 h-3 left-[calc(100%_-_21.5px)] flex items-center justify-center opacity-0 rounded-[50%] top-[15px];
+    scale: 0.8;
+  }
+  .switch .sun .dot {
+    @apply block w-[3px] h-[3px] z-[1] shadow-[11px_0px_0px_var(--shadow-color),10.3px_0px_0px_var(--shadow-color),-11px_0px_0px_var(--shadow-color),-10.3px_0px_0px_var(--shadow-color),0px_-11px_0px_var(--shadow-color),0px_-10.3px_0px_var(--shadow-color),0px_11px_0px_var(--shadow-color),0px_10.3px_0px_var(--shadow-color),8px_8px_0px_var(--shadow-color),7.3px_7.3px_0px_var(--shadow-color),8px_-8px_0px_var(--shadow-color),7.3px_-7.3px_0px_var(--shadow-color),-8px_-8px_0px_var(--shadow-color),-7.3px_-7.3px_0px_var(--shadow-color),-8px_8px_0px_var(--shadow-color),-7.3px_7.3px_0px_var(--shadow-color)] rounded-[50%] before:content-[""] before:absolute before:-translate-x-2/4 before:-translate-y-2/4 before:w-2.5 before:h-2.5 before:border-[color:var(--color-dark)] before:rounded-[50%] before:border-2 before:border-solid before:left-2/4 before:top-2/4 relative;
+    background: var(--color-dark);
+    background: white;
+  }
+  .switch .sun .dot::before {
+    background: white;
+  }
+
+  /*checkbox styles */
+  .switch .circle {
+    @apply appearance-none relative w-[25px] h-[25px] bg-[color:var(--color-darkGray)] border border-[color:var(--color-darkGray)] transition-[var(--transition500)] shadow-[1px_1px_20px_3px_var(--color-darkGray)] rounded-[50%] border-solid left-0 hover:ml-[3px] checked:hover:ml-[-3px] checked:left-[calc(100%_-_24px)] checked:shadow-[1px_1px_30px_12px_white] checked:border-[white];
+  }
+  .switch:has(.circle:checked) {
+    background: var(--color-offwhite);
+  }
+  .switch .circle:checked {
+    background: white;
+  }
+  .switch:has(.circle:checked) > .sun {
+    @apply opacity-100;
+  }
+  .switch:has(.circle:checked) > .moon {
+    @apply opacity-0;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
