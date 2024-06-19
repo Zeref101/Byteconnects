@@ -51,7 +51,7 @@ const Page = () => {
             <div className=' flex flex-col gap-3 mb-16 '>
 
                 <h1 className='text-[30px] font-semibold leading-[42px] tracking-tighter text-[#eee]'>Welcome Back!</h1>
-                <h2 className='text-[22px] font-semibold leading-[31.2px] text-[#eee]'>Enter your credentials to access your account</h2>
+                <h2 className='text-[22px] font-semibold leading-[31.2px] text-[#eeeeeeb9]'>Enter your credentials to access your account</h2>
             </div>
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full pb-4">
@@ -131,7 +131,7 @@ const Page = () => {
 
             </div>
             <p className=' w-full flex items-center justify-center gap-2.5 mt-4 text-[16px] font-normal leading-[22.4px] text-white'>
-                Have an account?{" "}<Link href={'/sign-in'} className=' text-blue-700 font-semibold'>Sign in</Link>
+                Don&apos;t have an Account?{" "}<Link href={'/sign-up'} className=' text-blue-700 font-semibold'>Sign Up</Link>
             </p>
 
         </div>
