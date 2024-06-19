@@ -127,7 +127,7 @@ const Page = () => {
 
             </div>
             <p className=' w-full flex items-center justify-center gap-2.5 mt-4 text-[16px] font-normal leading-[22.4px] text-white'>
-                Have an account?{" "}<Link href={'/sign-in'} className=' text-blue-700 font-semibold'>Sign in</Link>
+                Have an account?{" "}<Link href={'/sign-in'} className=' text-blue-700 font-semibold'>Sign In</Link>
             </p>
 
         </div>
