@@ -26,6 +26,7 @@ const config = {
       colors: {
         "primary-border": "#9747ff",
         "primary-hover-background": "#e8e9e98d",
+        "card-background": "#ffffff0d",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
