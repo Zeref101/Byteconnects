@@ -1,13 +1,14 @@
-import type { Config } from "tailwindcss"
+import { url } from "inspector";
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "dot-pattern":
+          "url('https://s3-alpha-sig.figma.com/img/7e6d/67a4/5f7442747a9717500b06ae19ccdddfc6?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=e87C9mKqv73fDtOKadpBbFX3o7XhrQrcpsoX-2nqupKXEZBQ4jfQpECngjzuIfoV3p8PTfLCCPkYv8DJZ~zYqJcnRG0fsz17dCXi1LIrdTWtUabx74PMhvNKQxnR1ghGWaqKvmwRR9EtU7Zvf6XhWN3F60C3u9o~2~JcKSkpQbNdMCIvUSTf27DXMW0NJT-htiwakcOgAL~fPLQw2r13uPxqDHop-DZlgVvLFrI3SDw3p2P~AsqgnmnMworDvBoTZZlkkpm~hPSpXHLneLfY3DKLTJ0ZuN-rruYUw4tGXxxMDkpksrtePpIpCGx2YxAZ0Lsd3Xg0OPw0a5r0b03hJA__')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,6 +80,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
