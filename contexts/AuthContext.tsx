@@ -13,6 +13,7 @@ import { getDoc, doc, setDoc } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 import { app, auth, db } from "@/firebase";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 const AuthContext = createContext({});
 
 async function verifyUser(user: User, password?: string, username?: string) {
@@ -39,6 +40,7 @@ export const AuthContextProvider = ({
   const [user, setUser] = useState<User | null>();
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   const signInWithGoogle = async () => {
     setLoading(true);
@@ -71,12 +73,13 @@ export const AuthContextProvider = ({
         email,
         password
       );
-      setUser(user);
-      console.log(user);
+      // setUser(user);
+      // console.log(user);
       await verifyUser(user, password, username);
       toast({
         title: "Account created successfully!",
       });
+      router.push("/sign-in");
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -91,9 +94,21 @@ export const AuthContextProvider = ({
       setLoading(true);
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       setUser(user);
+      const docRef = doc(db, `users/${user.email}`);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) {
+        throw new Error("User does not exist");
+      }
       console.log(user);
-    } catch (error) {
-      console.log(error);
+      toast({
+        title: "Signed In successfully!",
+      });
+      router.push("/");
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: error.message,
+      });
     } finally {
       setLoading(false);
     }
