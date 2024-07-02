@@ -1,3 +1,5 @@
+import { url } from "inspector";
+
 export const NavbarLinks = [
   {
     url: "/",
@@ -19,4 +21,8 @@ export const NavbarLinks = [
     url: "/contact",
     label: "Contact",
   },
+  {
+    url: "/create-blog",
+    label: "Create Blog",
+  }
 ];
