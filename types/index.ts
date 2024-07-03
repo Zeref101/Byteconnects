@@ -1,5 +1,5 @@
 import { StaticImageData } from "next/image";
-
+import { User } from 'firebase/auth';
 export interface CustomAuthProps {
   name: string;
   image: StaticImageData;
@@ -20,4 +20,5 @@ export interface AuthContextType {
     email: string,
     password: string
   ) => Promise<void>;
+  user?: User;
 }

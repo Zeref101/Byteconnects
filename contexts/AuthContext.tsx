@@ -10,8 +10,9 @@ import {
   User,
 } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
+import { ref, uploadBytesResumable } from "firebase/storage";
 import { createContext, useContext, useEffect, useState } from "react";
-import { app, auth, db } from "@/firebase";
+import { app, auth, db, storage } from "@/firebase";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 const AuthContext = createContext({});
@@ -28,7 +29,11 @@ async function verifyUser(user: User, password?: string, username?: string) {
       uid: user.uid,
     });
   } else {
-    throw new Error("User already exists");
+    if (!password) {
+      return;
+    } else {
+      throw new Error("User already exists");
+    }
   }
 }
 
@@ -49,6 +54,7 @@ export const AuthContextProvider = ({
       const { user } = await signInWithPopup(auth, provider);
       setUser(user);
       verifyUser(user);
+      router.push("/");
     } catch (e) {
       console.error(e);
     } finally {
@@ -99,7 +105,6 @@ export const AuthContextProvider = ({
       if (!docSnap.exists()) {
         throw new Error("User does not exist");
       }
-      console.log(user);
       toast({
         title: "Signed In successfully!",
       });
@@ -117,11 +122,10 @@ export const AuthContextProvider = ({
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
+      // console.log(currentUser);
     });
     return () => unsubscribe();
   }, [user]);
-
   return (
     <AuthContext.Provider
       value={{
