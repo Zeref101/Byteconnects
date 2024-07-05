@@ -10,6 +10,7 @@ import { AuthContextType } from "@/types";
 import axios from "axios";
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
+import Tiptap from "../RTE/RTE";
 export default function Form() {
   const { user } = useAuth() as AuthContextType;
   const { toast } = useToast();
@@ -33,11 +34,14 @@ export default function Form() {
       toast({ title: String(res.data) });
       router.push("/");
     } catch (e) {
-      console.log(e);
+      toast({
+        title: "Error",
+        description: "Error creating blog",
+      });
     }
   }
   return (
-    <section className="flex flex-col justify-center items-center w-full min-h-screen bg-white gap-28">
+    <section className="flex flex-col justify-center items-center w-full min-h-screen gap-28">
       <div className="flex w-full flex-col justify-center items-center gap-6">
         <h1 className="text-7xl font-bold">Create Blog</h1>
         <p className="text-2xl text-gray-500">write down your thoughts</p>
@@ -61,23 +65,25 @@ export default function Form() {
       </div>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
-          <div className="text-5xl font-semibold">Heading</div>
+          <div className="text-5xl font-semibold">Text Preview</div>
           <p className="text-2xl text-gray-500">
             Subheading to introduce testimonials
           </p>
         </div>
         <Textarea
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
+          // onChange={(e) => {
+          //   setText(e.target.value);
+          // }}
           className="w-full"
           placeholder="Placeholder"
           value={text}
           rows={15}
           cols={150}
+          disabled
         />
       </div>
       <Button onClick={createBlog}>Create</Button>
+      <Tiptap setText={setText} onClick={createBlog}></Tiptap>
       <Modal
         open={isOpen}
         onClose={() => {
