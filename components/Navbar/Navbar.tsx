@@ -13,7 +13,7 @@ import { MoongSVG } from "../MoonSVG";
 
 const Navbar = () => {
     return (
-        <div className=' w-3/4 px-12 pt-8 flex justify-between items-center fixed top-0 '>
+        <div className=' w-full h-[56px] z-50 px-24 pt-8 flex justify-between items-center fixed top-0 m-4'>
             <div className=' flex justify-center items-center gap-2'>
                 <Image
                     src={union}
