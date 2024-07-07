@@ -55,13 +55,22 @@ export default function Modal({ open, onClose, setURL }) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent>
-        <DialogTitle>Enter the image</DialogTitle>
-        <Input onChange={handleFileChange} className="m-10" type="file"></Input>
-        <Button onClick={handleUpload}>Upload</Button>
+        <DialogTitle className="text-white">Enter the image</DialogTitle>
+        <Input
+          onChange={handleFileChange}
+          className="m-10 bg-white rounded-md"
+          type="file"
+        ></Input>
+        <Button onClick={handleUpload} className="bg-white rounded-md">
+          Upload
+        </Button>
         {progress > 0 && (
           <div>
             <DialogDescription>{Math.ceil(progress)}%</DialogDescription>
-            <Progress value={progress} className="w-[60%]" />
+            <Progress
+              value={progress}
+              className="w-[60%] bg-white p-3 text-black"
+            />
           </div>
         )}
       </DialogContent>
